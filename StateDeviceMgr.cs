@@ -12,20 +12,14 @@
 //========================================================================================
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Net;
-using System.Text;
-using System.Threading;
-using System.Xml;
-using System.Xml.XPath;
 
 namespace EmbeddedAutomation.mServer.Adapters
 {
     using EmbeddedAutomation.mHome.Api;
     using EmbeddedAutomation.mServer.Api;
 
-    [NameAndVersion("STATEDEVICE", "1.0.0")]
+    [NameAndVersion("STATEDEVICE", "3.0.0")]
     [SupportedProtocols("PROT_STATEDEVICE")]
 
     /// <summary>
@@ -129,11 +123,7 @@ namespace EmbeddedAutomation.mServer.Adapters
         public void writeLog(string iMessage)
         {
             if (DebugLevel >= 8)
-            {
-                {
-                    ApiUtil.LogDebug(iMessage);
-                }
-            }
+                ApiUtil.LogDebug(iMessage);
         }
 
         protected override bool SendCommand(AbstractDevice devrec, string command, string[] cmdParams)
@@ -144,11 +134,7 @@ namespace EmbeddedAutomation.mServer.Adapters
                 writeLog("Param: " + param);
             }
 
-            if (
-                ( (devrec is VarDevice) | (devrec is DateDevice) | (devrec is DelayDevice) ) && 
-                devrec.Adapter == PluginName &&
-                devrec.DeviceModule.ModuleClass == EModuleClass.UNDEFINED
-               )
+            if ( (devrec is VarDevice) | (devrec is DateDevice) | (devrec is DelayDevice) )
             {
                 if (devrec is DateDevice)
                 {

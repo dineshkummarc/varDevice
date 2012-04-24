@@ -18,6 +18,7 @@ using System.Threading;
 namespace EmbeddedAutomation.mServer.Adapters
 {
     using EmbeddedAutomation.mServer.Api;
+    using EmbeddedAutomation.mHome.Api;
 
     public class VarDevice : AbstractDevice
     {
@@ -33,7 +34,7 @@ namespace EmbeddedAutomation.mServer.Adapters
 
         public override void UninitDevice()
         {
-            SrvUtil.DisposeWaitHandle(ref _evRespRcvd);
+            ApiUtil.DisposeWaitHandle(ref _evRespRcvd);
         }
 
         public override void InitDevice()

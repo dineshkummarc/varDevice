@@ -13,24 +13,18 @@
 //========================================================================================
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Net.Cache;
-using System.Net;
-using System.Text;
 using System.Threading;
 
 namespace EmbeddedAutomation.mServer.Adapters
 {
-    using EmbeddedAutomation.mHome.Api;
     using EmbeddedAutomation.mServer.Api;
-    using System.Xml;
-    using System.Xml.XPath;
+    using EmbeddedAutomation.mHome.Api;
 
     public class DelayDevice : AbstractDevice
     {
         public override string PluginName { get { return "Delay Device"; } }
-        public override Version PluginVersion { get { return new Version(1, 0, 0); } }
+        public override Version PluginVersion { get { return new Version(3, 0, 0); } }
 
         private AutoResetEvent _evRespRcvd; // response received
         protected int currentState;
@@ -44,7 +38,7 @@ namespace EmbeddedAutomation.mServer.Adapters
 
         public override void UninitDevice()
         {
-            SrvUtil.DisposeWaitHandle(ref _evRespRcvd);
+            ApiUtil.DisposeWaitHandle(ref _evRespRcvd);
         }
 
         public override void InitDevice()
